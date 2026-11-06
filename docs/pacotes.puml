@@ -1,0 +1,28 @@
+@startuml
+package "Front-end (React + Vite)" as FE {
+  package pages
+  package api
+}
+package "Back-end (Spring Boot - MVC)" as BE {
+  package controller <<Controller>>
+  package service
+  package model <<Model>>
+  package repository
+  package dto
+  package security
+  package exception
+}
+database "Supabase (PostgreSQL)" as DB
+
+pages --> api
+api ..> controller : HTTP/JSON
+controller --> service
+controller --> dto
+service --> repository
+service --> model
+repository --> model
+repository ..> DB : JPA/JDBC
+security ..> repository
+controller ..> security
+exception ..> controller
+@enduml

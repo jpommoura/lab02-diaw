@@ -1,0 +1,22 @@
+@startuml
+enum Role { CLIENTE EMPRESA BANCO }
+enum StatusPedido { PENDENTE APROVADO REPROVADO CONTRATADO CANCELADO }
+enum TipoProprietario { CLIENTE EMPRESA BANCO }
+
+class Usuario { id: Long; username: String; senhaHash: String; role: Role }
+class Cliente { id: Long; rg: String; cpf: String; nome: String; endereco: String; profissao: String }
+class Rendimento { id: Long; entidadeEmpregadora: String; valor: BigDecimal }
+class Automovel { id: Long; matricula: String; ano: Integer; marca: String; modelo: String; placa: String; tipoProprietario: TipoProprietario }
+class PedidoAluguel { id: Long; dataInicio: LocalDate; dataFim: LocalDate; status: StatusPedido; parecer: String; criadoEm: LocalDateTime }
+class ContratoCredito { id: Long; valor: BigDecimal }
+
+Usuario "1" -- "0..1" Cliente
+Cliente "1" *-- "0..3" Rendimento
+Cliente "1" -- "0..*" PedidoAluguel
+Automovel "1" -- "0..*" PedidoAluguel
+PedidoAluguel "1" o-- "0..1" ContratoCredito
+ContratoCredito "0..*" -- "1" Usuario : banco
+Usuario --> Role
+PedidoAluguel --> StatusPedido
+Automovel --> TipoProprietario
+@enduml

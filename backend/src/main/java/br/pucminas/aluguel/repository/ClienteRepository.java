@@ -1,0 +1,11 @@
+package br.pucminas.aluguel.repository;
+
+import br.pucminas.aluguel.model.Cliente;
+import br.pucminas.aluguel.model.Usuario;
+import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.Optional;
+
+public interface ClienteRepository extends JpaRepository<Cliente, Long> {
+    Optional<Cliente> findByUsuario(Usuario usuario);
+    boolean existsByCpf(String cpf);
+}
