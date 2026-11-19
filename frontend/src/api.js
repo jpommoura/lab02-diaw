@@ -1,4 +1,7 @@
+import { mockApi } from './mock'
+
 const BASE = import.meta.env.VITE_API_URL || '/api'
+export const MOCK = import.meta.env.MODE === 'demo' || import.meta.env.VITE_MOCK === 'true'
 
 export const getSession = () => JSON.parse(localStorage.getItem('session') || 'null')
 export const setSession = (s) =>
@@ -6,6 +9,17 @@ export const setSession = (s) =>
 
 export async function api(path, { method = 'GET', body } = {}) {
   const s = getSession()
+
+  // Modo demonstração: sem back-end, dados simulados no navegador
+  if (MOCK) {
+    try {
+      return await mockApi(path, method, body, s?.token)
+    } catch (err) {
+      if (err.status === 401 && s) { setSession(null); window.location.reload() }
+      throw err
+    }
+  }
+
   const res = await fetch(BASE + path, {
     method,
     headers: { 'Content-Type': 'application/json', ...(s ? { Authorization: `Bearer ${s.token}` } : {}) },
