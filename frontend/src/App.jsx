@@ -19,7 +19,7 @@ export default function App() {
   return (
     <div className="container">
       <header>
-        <h1>🚗 Aluguel de Carros</h1>
+        <h1>Aluguel de Carros</h1>
         <span>{session.username} ({session.role}) <button onClick={sair}>Sair</button></span>
       </header>
       <nav>

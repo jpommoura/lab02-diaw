@@ -46,7 +46,7 @@ export default function Perfil() {
                  onChange={(e) => setR(i, 'entidadeEmpregadora', e.target.value)} required />
           <input type="number" step="0.01" placeholder="Valor" value={r.valor}
                  onChange={(e) => setR(i, 'valor', e.target.value)} required />
-          <button type="button" onClick={() => setF({ ...f, rendimentos: f.rendimentos.filter((_, j) => j !== i) })}>✕</button>
+          <button type="button" onClick={() => setF({ ...f, rendimentos: f.rendimentos.filter((_, j) => j !== i) })}>Remover</button>
         </div>
       ))}
       {f.rendimentos.length < 3 && (

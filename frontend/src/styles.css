@@ -1,22 +1,152 @@
+/* Identidade: azul-marinho + branco, textos pretos */
+:root {
+  --navy: #0b2545;
+  --navy-2: #13315c;
+  --navy-claro: #e8edf5;
+  --branco: #ffffff;
+  --fundo: #f3f5f9;
+  --texto: #111111;
+  --texto-suave: #4a4a4a;
+  --borda: #d5dbe5;
+  --perigo: #b42318;
+  --ok: #1f7a3d;
+  --raio: 6px;
+}
+
 * { box-sizing: border-box; }
-body { font-family: system-ui, sans-serif; background: #f4f5f7; color: #222; margin: 0; }
-.container { max-width: 1000px; margin: 0 auto; padding: 16px; }
-header { display: flex; justify-content: space-between; align-items: center; }
-nav { display: flex; gap: 8px; margin: 12px 0; }
-form { display: flex; flex-direction: column; gap: 8px; background: #fff; padding: 16px; border-radius: 8px; margin-bottom: 16px; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background: var(--fundo);
+  color: var(--texto);
+  line-height: 1.45;
+}
+
+h1, h2, h3 { color: var(--texto); margin: 0 0 12px; letter-spacing: -0.01em; }
+h1 { font-size: 22px; }
+h2 { font-size: 18px; }
+h3 { font-size: 15px; }
+
+.container { max-width: 1080px; margin: 0 auto; padding: 24px 20px; }
+
+/* Cabeçalho */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--navy);
+  color: var(--branco);
+  padding: 14px 20px;
+  border-radius: var(--raio);
+}
+header h1 { color: var(--branco); margin: 0; font-size: 18px; text-transform: uppercase; letter-spacing: 0.06em; }
+header span { display: flex; align-items: center; gap: 12px; font-size: 14px; }
+header button { background: transparent; border: 1px solid rgba(255,255,255,.6); }
+header button:hover { background: var(--branco); color: var(--navy); }
+
+/* Abas */
+nav { display: flex; gap: 0; margin: 20px 0; border-bottom: 2px solid var(--borda); }
+nav button {
+  background: transparent;
+  color: var(--texto-suave);
+  border-radius: 0;
+  padding: 10px 18px;
+  border-bottom: 3px solid transparent;
+  margin-bottom: -2px;
+  font-weight: 600;
+}
+nav button:hover { background: transparent; color: var(--navy); }
+nav button.on { background: transparent; color: var(--navy); border-bottom-color: var(--navy); }
+
+/* Formulários */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: var(--branco);
+  padding: 20px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  margin-bottom: 20px;
+}
 form.grid { flex-direction: row; flex-wrap: wrap; align-items: center; }
-.auth form { max-width: 360px; margin: 0 auto; }
-.linha { display: flex; gap: 8px; }
-input, select { padding: 8px; border: 1px solid #ccc; border-radius: 6px; flex: 1; min-width: 120px; }
-button { padding: 8px 12px; border: 0; border-radius: 6px; background: #2563eb; color: #fff; cursor: pointer; }
-nav button { background: #e5e7eb; color: #222; }
-nav button.on { background: #2563eb; color: #fff; }
-button.perigo { background: #dc2626; }
-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 8px; overflow: hidden; }
-th, td { padding: 8px; text-align: left; border-bottom: 1px solid #eee; font-size: 14px; }
-.acoes { display: flex; gap: 4px; }
-.erro { color: #dc2626; } .msg { color: #16a34a; }
-.badge { padding: 2px 8px; border-radius: 12px; font-size: 12px; background: #e5e7eb; }
-.badge.APROVADO, .badge.CONTRATADO { background: #bbf7d0; }
-.badge.REPROVADO, .badge.CANCELADO { background: #fecaca; }
-.badge.PENDENTE { background: #fef08a; }
+.linha { display: flex; gap: 10px; }
+
+input, select {
+  padding: 10px 12px;
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  background: var(--branco);
+  color: var(--texto);
+  font: inherit;
+  font-size: 14px;
+  flex: 1;
+  min-width: 120px;
+}
+input:focus, select:focus { outline: none; border-color: var(--navy); box-shadow: 0 0 0 3px rgba(11,37,69,.15); }
+
+/* Botões */
+button {
+  padding: 10px 16px;
+  border: 0;
+  border-radius: var(--raio);
+  background: var(--navy);
+  color: var(--branco);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background .15s;
+}
+button:hover { background: var(--navy-2); }
+button.perigo { background: var(--branco); color: var(--perigo); border: 1px solid var(--perigo); }
+button.perigo:hover { background: var(--perigo); color: var(--branco); }
+
+a { color: var(--navy); font-weight: 600; font-size: 14px; text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* Tela de login */
+.auth { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
+.auth h1 { color: var(--navy); font-size: 26px; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 20px; }
+.auth form { width: 100%; max-width: 380px; margin: 0; border-top: 4px solid var(--navy); padding: 28px; }
+.auth a { text-align: center; margin-top: 4px; }
+
+/* Tabelas */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: var(--branco);
+  border: 1px solid var(--borda);
+  border-radius: var(--raio);
+  overflow: hidden;
+}
+th {
+  background: var(--navy);
+  color: var(--branco);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+}
+th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--borda); font-size: 14px; }
+tbody tr:hover td { background: var(--navy-claro); }
+.acoes { display: flex; gap: 6px; }
+.acoes button { padding: 6px 10px; font-size: 13px; }
+
+/* Mensagens e status */
+.erro { color: var(--perigo); font-size: 14px; margin: 0; }
+.msg { color: var(--ok); font-size: 14px; margin: 0; }
+
+.badge {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: var(--navy-claro);
+  color: var(--navy);
+}
+.badge.APROVADO, .badge.CONTRATADO { background: #dcf3e3; color: var(--ok); }
+.badge.REPROVADO, .badge.CANCELADO { background: #fbe4e2; color: var(--perigo); }
+.badge.PENDENTE { background: #fdf3d7; color: #7a5a00; }

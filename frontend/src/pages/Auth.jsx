@@ -20,7 +20,7 @@ export default function Auth({ onLogin }) {
 
   return (
     <div className="container auth">
-      <h1>🚗 Aluguel de Carros</h1>
+      <h1>Aluguel de Carros</h1>
       <form onSubmit={enviar}>
         <h2>{modo === 'login' ? 'Entrar' : 'Cadastrar-se'}</h2>
         <input placeholder="Usuário" value={f.username} onChange={set('username')} required />
